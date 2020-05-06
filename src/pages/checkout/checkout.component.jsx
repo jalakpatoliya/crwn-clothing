@@ -6,8 +6,9 @@ import { selectCartItems, selectCartItemsTotal } from "../../redux/cart/cart.sel
 
 import './checkout.styles.scss';
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import StripeCheckoutButton from "../../components/stripe-button/stripe-button.components";
 
-const CheckoutPage = ({ cartItems, itemsTotal }) => {
+const CheckoutPage = ({ cartItems, total }) => {
     console.log(cartItems);
 
     return (
@@ -39,8 +40,16 @@ const CheckoutPage = ({ cartItems, itemsTotal }) => {
             }
 
             <div className='total'>
-                TOTAL:${itemsTotal}
+                TOTAL:${total}
             </div>
+
+            <div className='test-warning'>
+                *Please use the following test credit card for pyaments*
+                 <br />
+                4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+            </div>
+
+            <StripeCheckoutButton price={total} />
 
         </div>
     )
@@ -48,7 +57,7 @@ const CheckoutPage = ({ cartItems, itemsTotal }) => {
 
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    itemsTotal: selectCartItemsTotal
+    total: selectCartItemsTotal
 })
 
 export default connect(mapStateToProps)(CheckoutPage);
