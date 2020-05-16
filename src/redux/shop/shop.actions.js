@@ -1,8 +1,6 @@
 import ShopActionTypes from "./shop.types";
 import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase.utils";
 
-import { updateCollections } from '../../redux/shop/shop.actions';
-
 
 export const fetchCollectionsStart = () => ({
     type: ShopActionTypes.FETCH_COLLECTIONS_START
